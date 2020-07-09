@@ -16,6 +16,8 @@ httpApp.use(sessionParser);
 httpApp.use(cookieParser());
 
 httpApp.get("/login", (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     if (req.cookies.name && req.cookies.password) {
         req.session.user_id = -1;
         res.json({status: 200, name: "nigga", password: "bitch"});
@@ -24,6 +26,8 @@ httpApp.get("/login", (req: Request, res: Response) => {
     }
 })
 httpApp.post("/login",  (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
     let name = req.body.name;
     let password = req.body.password;
     req.session.user_id = -1;
